@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: IDE Remote
+Bundle-SymbolicName: org.eclipse.wst.ide.remote.ui;singleton:=true
+Bundle-Version: 1.0.700.qualifier
+Bundle-Activator: org.eclipse.wst.ide.remote.ui.internal.MonitorUIPlugin
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: org.eclipse.wst.ide.remote.ui.internal;x-internal:=true,
+ org.eclipse.wst.ide.remote.ui.internal.provisional;x-internal:=true,
+ org.eclipse.wst.ide.remote.ui.internal.view;x-internal:=true,
+ org.eclipse.wst.ide.remote.ui.internal.viewers;x-internal:=true
+Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.ui.ide;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.wst.ide.remote.core;bundle-version="[1.0.103,2.0.0)"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
