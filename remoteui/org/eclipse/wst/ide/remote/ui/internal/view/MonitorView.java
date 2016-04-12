@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.wst.ide.remote.ui.internal.view;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 //import java.util.Iterator;
 import java.util.List;
@@ -66,6 +67,7 @@ import org.eclipse.wst.ide.remote.core.internal.provisional.IMonitor;
 import org.eclipse.wst.ide.remote.core.internal.provisional.IRequestListener;
 import org.eclipse.wst.ide.remote.core.internal.provisional.MonitorCore;
 import org.eclipse.wst.ide.remote.core.internal.provisional.Request;
+import org.eclipse.wst.ide.remote.core.internal.provisional.Response;
 import org.eclipse.wst.ide.remote.ui.internal.ContextIds;
 import org.eclipse.wst.ide.remote.ui.internal.Messages;
 import org.eclipse.wst.ide.remote.ui.internal.MonitorPreferencePage;
@@ -120,6 +122,13 @@ public class MonitorView extends ViewPart {
 		Display.getDefault().asyncExec(new Runnable() {
 			public void run() {
 				if (!(rr instanceof ResendHTTPRequest)) {
+					String s=rr.getName();
+					try {
+						Response.respond(s);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				  treeViewer.refresh(MonitorTreeContentProvider.ROOT);
 				  if (!MonitorUIPlugin.getPinViewPreference())
 					  treeViewer.setSelection(new StructuredSelection(rr), true);
@@ -429,6 +438,7 @@ public class MonitorView extends ViewPart {
 			public void run() {
 				MonitorUIPlugin.getInstance().clearRequests();
 				clear();
+				vm.getCurrentResponseViewer().clear();
 			}
 		};
 		clearAction.setToolTipText(Messages.actionClearToolTip);

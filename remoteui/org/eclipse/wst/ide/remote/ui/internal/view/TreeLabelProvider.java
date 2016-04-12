@@ -63,12 +63,12 @@ public class TreeLabelProvider implements ILabelProvider {
 	public String getText(Object element) {
 		if (element instanceof Request) {
 			Request call = (Request) element;
-			return call.getName()+"hkdhvaskhd";
+			return call.getName();
 		} else if (element instanceof Integer) {
 			Integer in = (Integer) element;
 			return "localhost:" + in.intValue();
 		} else
-			return element.toString()+"dksakdvkaj";
+			return element.toString();
 	}
 
 	/*

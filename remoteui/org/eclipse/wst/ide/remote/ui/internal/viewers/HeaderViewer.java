@@ -18,6 +18,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.wst.ide.remote.core.internal.provisional.Request;
+//import org.eclipse.wst.ide.remote.core.internal.provisional.Response;
 import org.eclipse.wst.ide.remote.ui.internal.ContextIds;
 import org.eclipse.wst.ide.remote.ui.internal.Messages;
 import org.eclipse.wst.ide.remote.ui.internal.MonitorUIPlugin;
@@ -120,14 +121,17 @@ public class HeaderViewer {
 			if (msg == REQUEST_HEADER) {
 				req=true;
 				byte[] b = rr.getRequest(Request.CONTENT);
+				//System.out.println(rr.getName());
 				if (b != null)
 					out =MonitorUIPlugin.parse(b);
 			} else if (msg == RESPONSE_HEADER) {
 				req=false;
 				byte[] b = rr.getRequest(Request.CONTENT);
+				//System.out.println(rr.getName());
 				if (b != null)
 					out =MonitorUIPlugin.parse(b);
-				String command=out.split(" ")[1];
+				String command="";
+				if(out.length()!=0) command=out.split(" ")[1];
 				if ( command!= null)
 					out = command;
 			}

@@ -28,7 +28,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.wst.ide.remote.core.internal.provisional.Response;
 import org.eclipse.wst.ide.remote.ui.internal.ContextIds;
 import org.eclipse.wst.ide.remote.ui.internal.Messages;
 import org.eclipse.wst.ide.remote.ui.internal.MonitorUIPlugin;
@@ -38,7 +37,7 @@ import org.eclipse.wst.ide.remote.ui.internal.provisional.ContentViewer;
  * A basic byte viewer.
  */
 public class ByteViewer extends ContentViewer {
-	protected Text text;
+	protected static Text text;
 	protected Label encodingLabel;
 	protected Combo encodingCombo;
 	protected Composite byteViewerBodyComposite;
@@ -165,9 +164,15 @@ public class ByteViewer extends ContentViewer {
 		String out="";
 		if (b != null)
 			out =MonitorUIPlugin.parse(b);
-		String command=out.split(" ")[1];
-		out=Response.getResponse(command);
-		text.setText(out);
+		
+	}
+	
+	public static void setContent(String s){
+		text.setText(s);
+	}
+	
+	public void clear(){
+		text.setText("");
 	}
 	
 	/**

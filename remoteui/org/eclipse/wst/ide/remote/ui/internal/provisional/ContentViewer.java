@@ -146,5 +146,9 @@ public abstract class ContentViewer {
 	public void setRespContent(byte[] b) {
 		// do nothing	
 	}
+	
+	public void clear(){
+		//do nothing
+	}
 
 }

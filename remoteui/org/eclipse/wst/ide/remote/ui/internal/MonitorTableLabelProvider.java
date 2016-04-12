@@ -64,7 +64,7 @@ public class MonitorTableLabelProvider implements ITableLabelProvider {
 				return Messages.started;
 			return Messages.stopped;
 		} else if (columnIndex == 1)
-			return monitor.getRemoteHost() + ":" + monitor.getRemotePort()+"hello1";
+			return monitor.getRemoteHost() + ":" + monitor.getRemotePort();
 		else if (columnIndex == 2)
 			return monitor.getProtocol();
 		else if (columnIndex == 3)

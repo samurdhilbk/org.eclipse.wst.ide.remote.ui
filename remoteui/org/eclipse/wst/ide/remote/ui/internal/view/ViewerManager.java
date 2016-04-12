@@ -162,6 +162,7 @@ public class ViewerManager {
 		// maintain the state of the request and request header if they've been modified.
 		if (request instanceof ResendHTTPRequest && request.getResponse(Request.ALL) == null) {
 			ResendHTTPRequest resRequest = (ResendHTTPRequest) request;
+			System.out.println(request.getName());
 			//EditableContentViewer editViewer = (ContentViewer) reqViewer;
 			byte[] content = reqViewer.getContent();
 			byte[] b = resRequest.getRequest(Request.CONTENT);
@@ -181,7 +182,13 @@ public class ViewerManager {
 			b = filter(rr.getRequest(Request.CONTENT));
 		reqViewer.setContent(b);
 		
-		respViewer.setRespContent(rr.getRequest(Request.CONTENT));
+		try{
+			respViewer.setRespContent(rr.getRequest(Request.CONTENT));
+		}
+		catch(NullPointerException e){
+			//do nothing
+			System.out.println("null");
+		}
 		request = rr;
 		
 		// set the editor to editable if the request hasn't been sent and the
@@ -322,6 +329,10 @@ public class ViewerManager {
 	 */
 	public ContentViewer getCurrentRequestViewer() {
 		return reqViewer;
+	}
+	
+	public ContentViewer getCurrentResponseViewer() {
+		return respViewer;
 	}
 
 	/* (non-Javadoc)
